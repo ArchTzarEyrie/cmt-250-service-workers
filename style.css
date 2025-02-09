@@ -15,12 +15,6 @@ html {
     border-radius: 6px;
   }
   
-  .controls label,
-  .controls p,
-  .controls input {
-    font-size: 3vw;
-  }
-  
   .controls div {
     padding-bottom: 1rem;
   }
