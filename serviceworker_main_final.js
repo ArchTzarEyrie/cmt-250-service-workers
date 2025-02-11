@@ -23,3 +23,8 @@ function buttonHandler() {
 }
 
 document.getElementById('message-button').onclick = buttonHandler;
+
+navigator.serviceWorker.addEventListener('message', (event) => {
+  console.log('Received');
+  console.log(event.data);
+})

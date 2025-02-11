@@ -11,4 +11,5 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('message', (event) => {
     console.log('Message Received');
     console.log(event.data);
+    event.source.postMessage('Message from SW to Client');
 })
