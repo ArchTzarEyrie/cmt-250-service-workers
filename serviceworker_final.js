@@ -23,7 +23,6 @@ async function handleFetch(event) {
         return responseFromCache;
     }
 
-    // Next try to get the resource from the network
     try {
 
         const responseFromNetwork = await fetch(request.clone());
@@ -42,7 +41,7 @@ async function handleFetch(event) {
 }
 self.addEventListener('fetch', async (event) => {
     console.log(event.request.url);
-    if (event.request.url.includes('gallery')) {
+    if (event.request.url.includes('gallery') || event.request.referrer.includes("Cached")) {
         event.respondWith(handleFetch(event));
     } else {
         console.log('Responding without checking cache');
