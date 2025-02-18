@@ -22,7 +22,14 @@ function buttonHandler() {
   navigator.serviceWorker.controller.postMessage('message from client to service worker');
 }
 
+function imageButtonHandler() {
+  console.log('Image button pushed');
+  const imgTag = document.getElementById('image-tag');
+  imgTag.src = './cat2.jpg'
+}
+
 document.getElementById('message-button').onclick = buttonHandler;
+document.getElementById('image-button').onclick = imageButtonHandler;
 
 navigator.serviceWorker.addEventListener('message', (event) => {
   console.log('Received');
