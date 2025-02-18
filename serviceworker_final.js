@@ -41,5 +41,11 @@ async function handleFetch(event) {
     }
 }
 self.addEventListener('fetch', async (event) => {
-    event.respondWith(handleFetch(event));
+    console.log(event.request.url);
+    if (event.request.url.includes('gallery')) {
+        event.respondWith(handleFetch(event));
+    } else {
+        console.log('Responding without checking cache');
+    }
+    
 });
