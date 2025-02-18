@@ -1,19 +1,15 @@
 function initServiceWorker() {
+  console.log('initializing main file');
   navigator.serviceWorker
-    .register("./serviceworker_final.js", { scope: "/" })
-    .then((registration) => {
-      console.log(
-        "[CHECK]: Service_Worker_Registered_With_Scope",
-        registration.scope
-      );
-    })
-    .catch((error) => {
-      console.error("[ERR]: Service_Worker_Registration_Failed:", error);
-  });
+      .register('./serviceworker.js')
+      .then(() => console.log('Service worker registered'))
+      .catch((error) => {
+          console.log('Error during service worker registration');
+          console.log(error);
+      });
 }
-  
-// Call the initServiceWorker function when the page loads
-window.addEventListener("load", () => {
+
+window.addEventListener('load', () => {
   initServiceWorker();
 });
 
@@ -22,16 +18,18 @@ function buttonHandler() {
   navigator.serviceWorker.controller.postMessage('message from client to service worker');
 }
 
+document.getElementById('message-button').onclick = buttonHandler;
+
+navigator.serviceWorker.addEventListener('message', (event) => {
+  console.log('Received');
+  console.log(event.data);
+})
+
 function imageButtonHandler() {
   console.log('Image button pushed');
   const imgTag = document.getElementById('image-tag');
   imgTag.src = './cat2.jpg'
 }
 
-document.getElementById('message-button').onclick = buttonHandler;
 document.getElementById('image-button').onclick = imageButtonHandler;
 
-navigator.serviceWorker.addEventListener('message', (event) => {
-  console.log('Received');
-  console.log(event.data);
-})

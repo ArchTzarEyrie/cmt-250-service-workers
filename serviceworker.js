@@ -8,9 +8,8 @@ self.addEventListener('activate', (event) => {
     event.waitUntil(clients.claim());
 });
 
-self.addEventListener('message', (event) => {
-    console.log('Service worker received message');
+self.addEventListener('message', async (event) => {
+    console.log('Message Received');
     console.log(event.data);
-    const clientArray = clients.matchAll();
-    console.log(clientArray);
+    event.source.postMessage('Message from SW to Client');
 });
